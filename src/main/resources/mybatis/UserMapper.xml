@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="uz.dk.mybatis.user.UserRepository">
+    <!--<cache />-->
+    <resultMap id="baseResultMap" type="uz.dk.mybatis.user.User">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="full_name" property="fullName" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR"/>
+        <result column="create_at" property="createAt" jdbcType="TIMESTAMP"/>
+        <result column="is_blocked" property="isBlocked" jdbcType="BOOLEAN"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+    </resultMap>
+
+    <sql id="User_List">
+        id, full_name, age, email, phone_number, create_at, is_blocked, is_deleted
+    </sql>
+
+    <select id="getAll" resultMap="baseResultMap">
+        select
+        <include refid="User_List"/>
+        from users where not is_deleted;
+    </select>
+
+    <select id="getById" resultMap="baseResultMap">
+        select
+        <include refid="User_List"/>
+        from users where id=#{id} and not is_deleted;
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into users (full_name, age, email, phone_number)
+        values (#{user.fullName}, #{user.age}, #{user.email}, #{user.phoneNumber})
+    </insert>
+
+    <update id="update">
+        update users
+        set full_name    = #{user.fullName},
+            age          = #{user.age},
+            email        = #{user.email},
+            phone_number = #{user.phoneNumber},
+            is_blocked   = #{user.isBlocked},
+            is_deleted   = #{user.isDeleted}
+        where id = #{user.id}
+          and not is_deleted;
+    </update>
+
+    <delete id = "deleteById" parameterType = "long">
+        DELETE from users WHERE id = #{id} and not is_deleted;
+    </delete>
+</mapper>
