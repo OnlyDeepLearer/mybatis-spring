@@ -20,14 +20,4 @@ public interface UserRepository {
 
     void deleteById(@Param("id") Long id);
 
-
-//    @Results(id = "UserMap", value = {
-//            @Result(property = "companyId", column = "company_id"),
-//            @Result(property = "name", column = "user_name"),
-//            @Result(property = "email", column = "user_email"),
-//            @Result(property = "phone", column = "user_phone"),
-//            @Result(property = "address", column = "user_address")
-//    })
-//    @Select("<script>SELECT * FROM User <if test='keyword != null'>WHERE user_name like CONCAT( '%', CONCAT( #{keyword}, '%' ))</if> <if test='orderBy != null'>ORDER BY ${orderBy}</if></script>")
-//    List<User> getByKeyword(@Param("keyword") String keyword, @Param("orderBy") String orderBy);
 }

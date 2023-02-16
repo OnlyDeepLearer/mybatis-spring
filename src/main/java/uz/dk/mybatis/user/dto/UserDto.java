@@ -11,6 +11,5 @@ public class UserDto {
     private int age;
     private String email;
     private String phoneNumber;
-    private String code;
     private boolean isBlocked;
 }

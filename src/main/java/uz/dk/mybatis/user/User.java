@@ -1,13 +1,13 @@
 package uz.dk.mybatis.user;
 
 import lombok.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
 
 @Getter
 @Setter
 @ToString
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
