@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@OpenAPIDefinition
+@OpenAPIDefinition // http://localhost:8080/swagger-ui/index.html
 public class MyBatisApplication {
 
     public static void main(String[] args) {
